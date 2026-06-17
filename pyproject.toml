@@ -13,5 +13,8 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = [
-    "openai>=1.13.0",
+    "openai==1.91.0",
 ]
+
+[tool.setuptools.packages.find]
+include = ["agents*", "configs*", "functions*", "llm_agent*"]

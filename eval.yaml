@@ -1,0 +1,38 @@
+# 
+
+name: Humanity's Last Exam
+description: >
+  Humanity's Last Exam (HLE) is a multi-modal benchmark at the frontier of human
+  knowledge, designed to be the final closed-ended academic benchmark of its
+  kind with broad subject coverage. Humanity's Last Exam consists of 2,500
+  questions across dozens of subjects, including mathematics, humanities, and
+  the natural sciences. HLE is developed globally by subject-matter experts and
+  consists of multiple-choice and short-answer questions suitable for automated
+  grading.
+
+tasks:
+  - id: hle
+    config: default
+    split: test
+
+    field_spec:
+      input: question
+      input_image: image
+      target: answer
+
+    solvers:
+      - name: system_message
+        args:
+          template: |
+            Your response should be in the following format:
+
+            Explanation: {your explanation for your answer choice}
+            Answer: {your chosen answer}
+            Confidence: {your confidence score between 0% and 100% for your answer}
+      - name: generate
+
+    scorers:
+      - name: model_graded_fact
+        args:
+          model: openai/o3-mini
+
